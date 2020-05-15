@@ -12,30 +12,8 @@
 
 #include "cub3d.h"
 
-// turn the color of the screen to black to refill it with a new frame
-void	turn_frame_black(void)
-{
-	data	info;
-	int		x;
-	int		y;
-
-	info = ft_data(NULL);
-	y = 0;
-	while (y < info.wy)
-	{
-		x = 0;
-		while (x < info.wx)
-		{
-			put_pixel_img(x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0 , 0);
-}
-
 // checks if the current x and y are a well
-int		Awall(float x, float y, char *which1)
+int		Awall(float x, float y)
 {
 	int		i;
 	int		j;
@@ -45,10 +23,6 @@ int		Awall(float x, float y, char *which1)
 	i = floor(x / SQUARE_SIZE);
 	y = y < 0 ? 0 : y;
 	j = floor(y / SQUARE_SIZE);
-	if (which1)
-		*which1 = info.the_map[j][i];
-	else if (info.the_map[j][i] == '2')
-		return (1);
 	if (info.the_map[j][i] == '1')
 		return (1);
 	return (0);
@@ -67,7 +41,7 @@ void	update_walk(int key, player *plr)
 	plr->mStep = plr->walkD * plr->moveS;
 	wanted_x = plr->x + cos(plr->rotationA * RADIN) * plr->mStep;
 	wanted_y = plr->y + sin(plr->rotationA * RADIN) * plr->mStep;
-	if (Awall(wanted_x, wanted_y, NULL) == 0)
+	if (Awall(wanted_x, wanted_y) == 0)
 	{
 		plr->x = wanted_x;
 		plr->y = wanted_y;

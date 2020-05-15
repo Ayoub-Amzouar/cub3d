@@ -13,7 +13,8 @@
 #include "cub3d.h"
 
 // and here we'll check the map file has the correct extension
-int		extension_check(char *file_name)
+// and if it exists
+int		check_file_name(char *file_name, int fd)
 {
 	int		i;
 	int		j;
@@ -34,15 +35,9 @@ int		extension_check(char *file_name)
 		j++;
 		i++;
 	}
-	return (1);
-}
-
-// this checks if the given file is exist with the help of the return value of open function
-int		file_existence(int fd)
-{
 	if (fd < 0)
 	{
-		perror("Error ");
+		ft_putstr_fd("This File Doesn't Exist\n", 2);
 		return (0);
 	}
 	return (1);

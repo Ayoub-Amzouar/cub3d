@@ -46,10 +46,7 @@ void	*g_img_ptr;
 int		*g_img_data;
 int		g_line;
 int		g_offset_x;
-int		g_offset_s;
 int		*g_texture;
-int	g_vert;
-int	g_asprite;
 float	*g_wall_distance;
 int	g_sprite_num;
 float	*g_sprite_distance;
@@ -97,16 +94,6 @@ typedef struct
 	float	y;
 }			crd;
 
-crd		sprt;
-
-typedef struct
-{
-	float 	x;
-	float	y;
-	float	sx;
-	float	sy;
-}		rycrd;
-
 typedef	struct
 {
 	float	dpp;
@@ -121,27 +108,23 @@ int			check_errors(char *stored_data);
 void		free_2D(char **splited);
 int			count_items(char **str);
 int			check_map(char **s, char *d);
-int			extension_check(char *file_name);
-int			file_existence(int fd);
 void		if_fail(void *state);
+int		check_file_name(char *file_name, int fd);
 data		ft_data(char *data_file);
 void		open_window(void);
 void		frame_render(int argc, char *argv);
 void		init_frame(int argc, char *argv);
 void		put_pixel_img(int x, int y, int color);
 player		*myPlayer(int state);
-void		turn_frame_black(void);
 void		update_player(int key);
-int			Awall(float x, float y, char *which1);
+int			Awall(float x, float y);
 void		rays(player plr, data info);
-char		*custom_strdup(char *str);
 int			map_complete(int i, int ret);
 float		normA(float angle);
-int			max_crd(rycrd intersect);
+int			max_crd(crd intersect);
 void		wall_rendering(float ray_d, int x, data info);
 void		select_texture(char c, float ray_angle);
 void		sprite_rendering(player plr, float ray_angle, data info, int x);
-void		sprite_dst(player plr, rycrd hi, rycrd vi);
 void		draw_sprite(player plr, data info);
 float		calc_sp_x_start(player plr, data info, crd sprite);
 void		draw_sprite_texture(sprite sprt, data info, int i);

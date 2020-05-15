@@ -18,7 +18,6 @@ int		update(int key)
 	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A ||
 	key == A_KEY || key == W_KEY || key == S_KEY || key == D_KEY)
 	{
-		turn_frame_black();
 		update_player(key);
 		frame_render(2, NULL);
 	}
@@ -35,7 +34,7 @@ char	*get_data(char *data_file)
 	int		state;
 
 	fd = open(data_file, O_RDONLY);
-	if (!file_existence(fd) || !extension_check(data_file))
+	if (!check_file_name(data_file, fd))
 		exit(1);
 	data = ft_strdup("");
 	while ((state = get_next_line(fd, &line)) >= 0)

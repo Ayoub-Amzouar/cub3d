@@ -25,7 +25,7 @@ void	store_sprite_position(crd *sprites, data info)
 	}
 }
 
-void	initial_sprite_properties(crd *sprites, player plr)
+void	initial_sprite_distance(crd *sprites, player plr)
 {
 	int	i;
 
@@ -89,7 +89,7 @@ void	draw_sprite(player plr, data info)
 
 	sprites = (crd *)malloc(sizeof(crd) * g_sprite_num);
 	store_sprite_position(sprites, info);
-	initial_sprite_properties(sprites, plr);
+	initial_sprite_distance(sprites, plr);
 	sort_sprites(&sprites);
 	sprt.i = 0;
 	while (sprt.i < g_sprite_num)
